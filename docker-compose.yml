@@ -1,0 +1,40 @@
+volumes:
+  postgres-data: {}
+
+networks:
+  my-app-network:
+
+services:
+  db:
+    image: postgres
+    container_name: postgres-db
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data:rw
+    networks:
+        - my-app-network
+    environment:
+      POSTGRES_USER: byte_cat
+      POSTGRES_PASSWORD: byte_cat
+      POSTGRES_DB: power_plant_db
+    ports:
+      - "5432:5432"
+#    env_file:
+#      - .env
+  app:
+    build: .
+    container_name: energiomap-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+        - my-app-network
+    environment:
+      DB_HOST: db
+      DB_USER: byte_cat
+      DB_PASSWORD: byte_cat
+      DB_NAME: power_plant_db
+#    env_file:
+#        - .env
