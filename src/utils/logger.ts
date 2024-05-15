@@ -6,7 +6,7 @@ export const logger = winston.createLogger({
     winston.format.timestamp({ format: 'YYYY-MM-DDTHH:mm:ss.SSSZ' }), // ISO 8601 format
     winston.format.printf((info) => {
       const { timestamp, level, message, ...rest } = info;
-      const serviceName = 'interaction-service'; // Customize your service name here
+      const serviceName = 'energiomap-api'; // Customize your service name here
       return `[${level}]: {${serviceName} , ${timestamp}} ${message}  ${JSON.stringify(rest)}`;
     })
   ),
