@@ -11,7 +11,7 @@ const port: number = <number>appConfig.port;
 async function startApp() {
     try {
         await AppDataSource.initialize();
-        // await csvImporter.importStates();
+        await csvImporter.importStates();
         await csvImporter.importPlants();
         app.listen(port, () => {
             logger.info(`Server is running on port ${port}`);
