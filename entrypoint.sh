@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 check_database() {
     if node -e "const typeorm = require('typeorm'); typeorm.createConnection().then(async connection => { await connection.query('SELECT 1'); }).catch(error => console.log(error));" &> /dev/null; then
