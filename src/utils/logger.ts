@@ -1,12 +1,12 @@
 import winston from 'winston';
 
 export const logger = winston.createLogger({
-  level: 'info', // Adjust as needed (e.g., 'debug' for more detailed logs)
+  level: 'info',
   format: winston.format.combine(
-    winston.format.timestamp({ format: 'YYYY-MM-DDTHH:mm:ss.SSSZ' }), // ISO 8601 format
+    winston.format.timestamp({ format: 'YYYY-MM-DDTHH:mm:ss.SSSZ' }),
     winston.format.printf((info) => {
       const { timestamp, level, message, ...rest } = info;
-      const serviceName = 'energiomap-api'; // Customize your service name here
+      const serviceName = 'energiomap-api';
       return `[${level}]: {${serviceName} , ${timestamp}} ${message}  ${JSON.stringify(rest)}`;
     })
   ),

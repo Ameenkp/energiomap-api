@@ -11,13 +11,6 @@ export class PlantService {
         this.plantRepository = AppDataSource.getRepository(Plant);
     }
 
-    // async getTopPlants(limit: number): Promise<Plant[]> {
-    //     return this.plantRepository.find({
-    //         take: limit,
-    //         relations: ['state'],
-    //         order: { plantAnnualNetGenerationMWh: 'DESC' },
-    //     });
-    // }
     async getTopPlants(limit: number): Promise<Plant[]> {
         try {
             return await this.plantRepository
@@ -83,28 +76,7 @@ export class PlantService {
         }
     }
 
-    //create a method to get all plants , and if search term is provided, search by given plant name
-    // async getAllPlants(limit:number , searchTerm:string): Promise<Plant[]> {
-    //
-    //     try {
-    //         if (searchTerm) {
-    //             return this.plantRepository.createQueryBuilder('plant')
-    //                 .select(['plant', 'state.abbreviation', 'state.name'])
-    //                 .leftJoin('plant.state', 'state')
-    //                 .where('plant.plantName ILIKE :plantName', {plantName: `%${searchTerm}%`})
-    //                 .getMany();
-    //         }
-    //         return this.plantRepository.createQueryBuilder('plant')
-    //             .select(['plant', 'state.abbreviation', 'state.name'])
-    //             .leftJoin('plant.state', 'state')
-    //             .getMany();
-    //     } catch (error) {
-    //         logger.error(error);
-    //         throw new Error('An error occurred in getAllPlants');
-    //     }
-    // }
-
-    async getAllPlants(limit: number, pageKey: string, state: string, sortBy: string, sortOrder: "ASC" | "DESC", searchTerm: string): Promise<Plant[]> {
+    async   getAllPlants(limit: number, pageKey: string, state: string, sortBy: string, sortOrder: "ASC" | "DESC", searchTerm: string): Promise<Plant[]> {
         try {
             const query = this.plantRepository.createQueryBuilder('plant')
                 .select(['plant', 'state.abbreviation', 'state.name'])

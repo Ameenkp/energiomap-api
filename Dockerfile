@@ -19,7 +19,6 @@ COPY . .
 COPY /src/data/ /app/src/data/
 COPY /src/data/ /app/dist/data/
 
-# Build the TypeScript code using Yarn
 RUN npm run build
 
 # Set executable permissions for entrypoint.sh
@@ -28,7 +27,6 @@ RUN chmod +x entrypoint.sh
 # Expose the port on which the microservice will run (replace 3000 with your actual port)
 EXPOSE 3000
 
-# Start the microservice using Yarn
 #CMD ["npm", "run","start"]
 ENTRYPOINT ["./entrypoint.sh"]
 
