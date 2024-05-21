@@ -56,7 +56,7 @@ npx ts-node ./node_modules/typeorm/cli.js migration:revert -d src/config/ormConf
    ```bash
    git clone https://github.com/Ameenkp/image-resizer-api.git
    
-    cd image-resize-api
+    cd energiomap-api
     ```
 2. **Build the Docker Image**:
     ```bash
